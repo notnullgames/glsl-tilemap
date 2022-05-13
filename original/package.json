@@ -1,8 +1,0 @@
-{
-  "name": "original",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "start": "npx -y lite-server"
-  }
-}

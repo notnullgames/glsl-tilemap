@@ -1,0 +1,46 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Zelda Maps - WebGL</title>
+  <link href="common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="page-header" class="content-column">
+      <h1>WebGL Tile Map</h1>
+  </div>
+  <div id="content-frame">
+      <div id="canvas-container">
+          <canvas id="webgl-canvas"></canvas>
+      </div>
+      <div id="controls-container" class="content-column">
+      </div>
+  </div>
+<script type="importmap">
+{
+  "imports": {
+    "gl-matrix": "https://esm.run/gl-matrix",
+    "stats.js": "https://esm.run/stats.js"
+  }
+}
+</script>
+<script type="module">
+import Stats from 'stats.js'
+
+import Demo from './js/demo.js'
+import GLContextHelper from './js/gl-context-helper.js'
+
+// Setup the canvas and GL context, initialize the scene
+const canvas = document.getElementById('webgl-canvas')
+const contextHelper = new GLContextHelper(canvas, document.getElementById('content-frame'))
+contextHelper.drawOnDemand = true
+const renderer = new Demo(contextHelper.gl, canvas)
+
+const stats = new Stats()
+document.getElementById('controls-container').appendChild(stats.domElement)
+
+// Get the render loop going
+contextHelper.start(renderer, stats)
+</script>
+
+</body>
+</html>
